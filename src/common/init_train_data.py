@@ -6,12 +6,12 @@ from src.common.init_edge import get_ways
 def train_data():
     # lable格式
     y_data = []
-    lable = {"0": [1, 0, 0, 0, 0],
-             "1": [0, 1, 0, 0, 0],
-             "2": [0, 0, 1, 0, 0],
-             "3": [0, 0, 0, 1, 0],
-             "4": [0, 0, 0, 0, 1],
-             }
+    format_lable = [[1, 0, 0, 0, 0],
+             [0, 1, 0, 0, 0],
+             [0, 0, 1, 0, 0],
+             [0, 0, 0, 1, 0],
+             [0, 0, 0, 0, 1],
+             ]
     # 读数据
     # with open('ways.json', 'r') as f:
     #     data = json.load(f)
@@ -26,7 +26,8 @@ def train_data():
             if j < 8000:
                 num = j
         this_lable = lable[num - 1]
-        y_data.append(this_lable)
+        y_data.append(format_lable[int(this_lable)])
     return data, y_data
+
 
 train_data()
