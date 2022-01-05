@@ -32,6 +32,7 @@ def train_data():
         x_data.append(data[i])
         # 数据标签
         y_data.append(lable[y[index_i[0]]])
+    # 将数据集返回
     return x_data, y_data
 
 
