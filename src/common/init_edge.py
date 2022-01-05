@@ -1,45 +1,32 @@
 from src.utils.readExcel import read_excel
-from src.utils.format import get_index, ergodic_pa
+from src.utils.format import migrate
 import json
 
 pa_path = "../../DataSets/pa.xls"
 pp_path = "../../DataSets/pp.xls"
-pv_path = "../../DataSets/pv.xls"
+vp_path = "../../DataSets/vp.xls"
 
 # pa
-# pa边 p顶点
-top_pa_p = read_excel(pa_path, 0)
-# pa边 p顶点的数量
-top_num_pa_p = read_excel(pa_path, 1)
-# pa边 a顶点
-top_pa_a = read_excel(pa_path, 3)
-# pa边 a顶点去重    （主要是第一个顶点会重复）
-top_a = list(set(top_pa_a))
+top_pa_list_a = read_excel(pa_path, 1)
+top_pa_list_p = read_excel(pa_path, 0)
+top_a = list(set(top_pa_list_a))
+top_p = list(set(top_pa_list_p))
+# pp
+top_pp_p1 = read_excel(pp_path, 0)
+top_pp_p2 = read_excel(pp_path, 1)
 
-# pv
-# pv边 p顶点
-top_pv_p = read_excel(pv_path, 0)
+# vp
+top_vp_list_v = read_excel(vp_path, 0)
+top_vp_list_p = read_excel(vp_path, 1)
+top_v = list(set(top_vp_list_v))
 
 
 # 开始遍历
-ways = {}
-a_len = len(top_a)
-a_max = max(top_a)
-# 从a点出发 a=>p=>p=>v
-for i in top_a:
-    if i % 100 == 0:
-        print(round(i * 100 / a_max, 2), "%")
-    ways[i] = []
-    # 将起始点加入ways
-    ways[i].append(i)
-    # 将第一个p点加入ways
-    ways[i].append(a[i][0][0])
-    # 开始将遍历点加入
-    ways[i].extend(ergodic_pa(a[i][0][0], p))
-
-print(ways)
-with open('ways.json', 'w') as f:
-    json.dump(ways, f)
+def get_ways():
+    res_data = migrate(top_v, top_vp_list_v, top_vp_list_p, top_pa_list_p, top_pa_list_a)
+    return res_data
+# with open('ways.json', 'w') as f:
+#     json.dump(ways, f)
 
 # Reading data back
 # with open('ways.json', 'r') as f:

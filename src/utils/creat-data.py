@@ -10,7 +10,7 @@ def save_excel(target_list, output_file_name):
     workbook = xlwt.Workbook(encoding='utf-8')
     ws = workbook.add_sheet("sheet1")
 
-    for i in range(2000):
+    for i in range(len(target_list)):
         for j in range(2):
             ws.write(i, j, target_list[i][j])
     workbook.save(output_file_name)
@@ -69,6 +69,7 @@ pp_path = "pp.xls"
 save_excel(pp_data, pp_path)
 pa_data = pa()
 pa_path = "pa.xls"
+print(pa_data)
 save_excel(pa_data, pa_path)
 a_lable_data = a_lable()
 a_lable_path = "a_lable.xls"
