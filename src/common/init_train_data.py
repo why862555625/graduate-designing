@@ -13,9 +13,9 @@ def train_data():
              [0, 0, 0, 0, 1],
              ]
     # 读数据
-    # with open('ways.json', 'r') as f:
-    #     data = json.load(f)
-    data = get_ways()
+    with open('ways.json', 'r') as f:
+        data = json.load(f)
+    # data = get_ways()
     # 读取源标签
     a_lable_path = "../../DataSets/a_lable.xls"
     a = read_excel(a_lable_path, 0)
