@@ -1,8 +1,6 @@
 import json
 from src.utils.readExcel import read_excel
 from src.common.init_edge import get_ways
-
-
 def train_data():
     # lable格式
     y_data = []
@@ -28,6 +26,4 @@ def train_data():
         this_lable = lable[num - 1]
         y_data.append(format_lable[int(this_lable)])
     return data, y_data
-
-
 train_data()

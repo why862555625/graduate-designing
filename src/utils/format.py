@@ -1,8 +1,6 @@
 def get_index(my_list, num):
     # 获取list中值为num的所有index
     return [i for i, x in enumerate(my_list) if x == num]
-
-
 def migrate(top_v, top_vp_list_v, top_vp_list_p, top_pa_list_p, top_pa_list_a):
     ways = []
     index = 0
@@ -24,5 +22,3 @@ def migrate(top_v, top_vp_list_v, top_vp_list_p, top_pa_list_p, top_pa_list_a):
                 ways[index].extend(index_pa_a_list)
         index += 1
     return ways
-
-
