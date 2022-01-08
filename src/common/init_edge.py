@@ -18,8 +18,7 @@ top_vp_list_p = read_excel(vp_path, 1)
 top_v = list(set(top_vp_list_v))
 # 开始遍历
 def get_ways():
-    res_data = migrate(top_v, top_vp_list_v, top_vp_list_p, top_pa_list_p, top_pa_list_a)
+    res_data = migrate(top_pa_list_a,top_pa_list_p,top_a,top_p,top_pp_p1,top_pp_p2,top_vp_list_v,top_vp_list_p,top_v)
     with open('ways.json', 'w') as f:
         json.dump(res_data, f)
-
-get_ways()
+    return  res_data
