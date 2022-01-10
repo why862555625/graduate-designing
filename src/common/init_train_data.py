@@ -27,4 +27,3 @@ def train_data():
     return data, y_data
 
 
-train_data()
