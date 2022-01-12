@@ -72,10 +72,8 @@ def migrate(top_pa_list_a, top_pa_list_p, top_a, top_p, top_pp_p1, top_pp_p2, to
             # 找到与当前p相连的所有a
             pa_a_v = get_same_index_value(p, top_pa_list_p, top_pa_list_a)
             for a_v in pa_a_v:
-                # 防止重复遍历=> 初始节点不能重复遍历
-                if a_v not in this_ways:
-                    # 将a的节点入list
-                    this_ways.append(a_v)
+                # 将a的节点入list
+                this_ways.append(a_v)
         # 将v加入list
         this_ways.append(vp_v_v[0])
         if (len(this_ways) != 257):

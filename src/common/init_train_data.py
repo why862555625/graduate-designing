@@ -14,9 +14,9 @@ def train_data():
                     ]
     # 读数据
     print('开始读取节点数据')
-    with open('ways.json', 'r') as f:
-        data = json.load(f)
-    # data = get_ways()
+    # with open('ways.json', 'r') as f:
+    #     data = json.load(f)
+    data = get_ways()
     # 读取源标签
     a_lable_path = "../../DataSets/a_lable.xls"
     a = read_excel(a_lable_path, 0)
@@ -25,5 +25,3 @@ def train_data():
     for i in lable:
         y_data.append(format_lable[int(i)])
     return data, y_data
-
-
