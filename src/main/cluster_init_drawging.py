@@ -8,6 +8,10 @@ keras = tf.keras
 layers = tf.keras.layers
 
 
+def dispersed_point(rate):
+    return rate * random.random() * random.random()
+
+
 def init_cluster_data():
     X = []
     tf.random.set_seed(0)
@@ -45,9 +49,10 @@ def init_cluster_data():
     x = X_trained.numpy()
     # 让点更加分散
     for i in x:
-        X.append([float(i[0][0]) + 0.5 * random.random() * random.random(),
-                  float(i[1][0]) + 0.05 * random.random() * random.random()])
+        X.append([float(i[0][0]) + dispersed_point(0.5),
+                  float(i[1][0]) + dispersed_point(0.05)])
     return X, y
+
 
 # 2d
 data, label = init_cluster_data()
