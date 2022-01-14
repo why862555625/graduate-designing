@@ -1,6 +1,12 @@
 import numpy as np
 from sklearn.datasets import load_digits
 from src.main.cluster_init_drawging import init_cluster_data
+from time import time
+from sklearn import metrics
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+
 
 x, y = load_digits(return_X_y=True)
 
@@ -12,10 +18,7 @@ labels = np.array(labels)
 reduced_data = data
 print(data.shape)
 
-from time import time
-from sklearn import metrics
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
+
 
 
 def bench_k_means(kmeans, name, data, labels):
@@ -44,7 +47,6 @@ def bench_k_means(kmeans, name, data, labels):
             sample_size=300,
         )
     ]
-
     # Show the results
     formatter_result = (
         "{:9s}\t{:.3f}s\t{:.0f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}"
@@ -71,16 +73,20 @@ import matplotlib.pyplot as plt
 kmeans = KMeans(init="k-means++", n_clusters=n_digits, n_init=4)
 kmeans.fit(reduced_data)
 
-
-centroids = kmeans.cluster_centers_
-print(centroids)
+# centroids = kmeans.cluster_centers_
+centroids = [
+    [1.84556356, 0.10122311],
+    [2.02422107, 0.2376797],
+    [2.96191177, 0.75754311],
+    [2.4030078, 0.55628736],
+    [2.27004174, 0.38826863]]
 plt.scatter(
-    centroids[:, 0],
-    centroids[:, 1],
+    [i[0] for i in centroids],
+    [i[1] for i in centroids],
     marker="x",
     s=169,
     linewidths=3,
-    color="black",
+    color="red",
     zorder=10,
 )
 x = []

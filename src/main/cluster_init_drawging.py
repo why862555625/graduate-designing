@@ -46,20 +46,19 @@ def init_cluster_data():
     # 让点更加分散
     for i in x:
         X.append([float(i[0][0]) + 0.5 * random.random() * random.random(),
-                  float(i[1][0]) + 0.02 * random.random() * random.random()])
+                  float(i[1][0]) + 0.05 * random.random() * random.random()])
     return X, y
 
+# 2d
+data, label = init_cluster_data()
+data = np.array(data)
+label = np.array(label)
 
-# # 2d
-# data, label = init_cluster_data()
-# data = np.array(data)
-# label = np.array(label)
-#
-# x = []
-# y = []
-# for i in data:
-#     x.append(i[0])
-#     y.append(i[1])
-# plt.scatter(x, y, s=6, c=label)
-# plt.savefig('./压缩后标签显示.jpg')
-# plt.show()
+x = []
+y = []
+for i in data:
+    x.append(i[0])
+    y.append(i[1])
+plt.scatter(x, y, s=6, c=label)
+plt.savefig('./压缩后标签显示.jpg')
+plt.show()
