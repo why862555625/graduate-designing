@@ -75,8 +75,8 @@ def migrate(top_pa_list_a, top_pa_list_p, top_a, top_p, top_pp_p1, top_pp_p2, to
                 # 将a的节点入list
                 this_ways.append(a_v)
         # 将v加入list
-        this_ways.append(vp_v_v[0])
-        if (len(this_ways) != 257):
+        # this_ways.append(vp_v_v[0])
+        if (len(this_ways) != 256):
             print('i===', i)
             print('this_ways  len ==', len(this_ways))
         # 将当前a遍历的路径加入list

@@ -24,6 +24,6 @@ top_v = list(set(top_vp_list_v))
 def get_ways():
     res_data = migrate(top_pa_list_a, top_pa_list_p, top_a, top_p, top_pp_p1, top_pp_p2, top_vp_list_v, top_vp_list_p,
                        top_v)
-    with open('ways.json', 'w') as f:
+    with open('../main/ways.json', 'w') as f:
         json.dump(res_data, f)
     return res_data

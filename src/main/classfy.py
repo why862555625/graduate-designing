@@ -4,7 +4,7 @@ from src.common.init_train_data import train_data
 tf.random.set_seed(0)
 keras = tf.keras
 layers = tf.keras.layers
-x_data, y_data = train_data()
+x_data, y_data, _ = train_data()
 # 将训练集转化为tensor
 x_data = tf.convert_to_tensor(x_data)
 # 输入形状(7956, 257)
@@ -13,12 +13,12 @@ shape = x_data.shape
 y_data = tf.convert_to_tensor(y_data)
 # 构建神经网络网络形状
 model = keras.Sequential()
-# (257,1)
+# (256,1)
 model.add(layers.Flatten(input_shape=(shape[1], 1)))
 model.add(keras.layers.Dense(1024, activation='sigmoid'))
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.Dense(512, activation='sigmoid'))
-model.add(keras.layers.AlphaDropout(rate=0.05))
+model.add(keras.layers.AlphaDropout(rate=0.1))
 model.add(keras.layers.Dense(256, activation='sigmoid'))
 model.add(keras.layers.Dense(64, activation='sigmoid'))
 model.add(keras.layers.Dense(5, activation='softmax'))
