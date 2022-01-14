@@ -18,7 +18,7 @@ def train_data():
                     ]
     # 读数据
     print('开始读取节点数据')
-    with open('ways.json', 'r') as f:
+    with open('../main/ways.json', 'r') as f:
         data = json.load(f)
     # data = get_ways()
     # 读取源标签

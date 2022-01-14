@@ -1,3 +1,8 @@
+from time import time
+from sklearn import metrics
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
 import tensorflow as tf
 from src.common.init_train_data import train_data
 import matplotlib.pyplot as plt
@@ -6,6 +11,36 @@ import numpy as np
 
 keras = tf.keras
 layers = tf.keras.layers
+
+def bench_k_means(kmeans, name, rate, data, labels):
+    t0 = time()
+    estimator = make_pipeline(StandardScaler(), kmeans).fit(data)
+    fit_time = time() - t0
+    results = [name, fit_time, estimator[-1].inertia_]
+    # labels
+    clustering_metrics = [
+        metrics.homogeneity_score,
+        metrics.completeness_score,
+        metrics.v_measure_score,
+        metrics.adjusted_rand_score,
+        metrics.adjusted_mutual_info_score,
+    ]
+    results += [rate * m(labels, estimator[-1].labels_) for m in clustering_metrics]
+    results += [
+        rate * metrics.silhouette_score(
+            data,
+            estimator[-1].labels_,
+            metric="euclidean",
+            sample_size=300,
+        )
+    ]
+    # Show the results
+    formatter_result = (
+        "{:9s}\t{:.3f}s\t{:.0f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}"
+    )
+    print(formatter_result.format(*results))
+
+
 
 
 def dispersed_point(rate):
@@ -44,7 +79,7 @@ def init_cluster_data():
     encode_output = keras.layers.Conv2D(1, 2, strides=1, padding="same", activation='relu')(encode)
 
     encoder = keras.Model(inputs, encode_output)
-    encoder.load_weights("./sava/encoder")
+    encoder.load_weights("../main/sava/encoder")
     X_trained = encoder(x_data)
     x = X_trained.numpy()
     # 让点更加分散
@@ -65,5 +100,5 @@ for i in data:
     x.append(i[0])
     y.append(i[1])
 plt.scatter(x, y, s=6, c=label)
-plt.savefig('./压缩后标签显示.jpg')
+plt.savefig('../main/压缩后标签显示.jpg')
 plt.show()
