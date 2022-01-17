@@ -54,7 +54,7 @@ def a_lable():
     lable = []
     x = -1
     for i in range(8001):
-        if (i % 1600 == 0):
+        if (i % 2000 == 0):
             if (i != 8000):
                 x += 1
         lable.append([i, x])
@@ -62,15 +62,15 @@ def a_lable():
 
 
 vp_data = vp()
-vp_path = "vp.xls"
+vp_path = "../../DataSets/DBLP/vp.xls"
 save_excel(vp_data, vp_path)
 pp_data = pp()
-pp_path = "pp.xls"
+pp_path = "../../DataSets/DBLP/pp.xls"
 save_excel(pp_data, pp_path)
 pa_data = pa()
-pa_path = "pa.xls"
+pa_path = "../../DataSets/DBLP/pa.xls"
 print(pa_data)
 save_excel(pa_data, pa_path)
 a_lable_data = a_lable()
-a_lable_path = "a_lable.xls"
+a_lable_path = "../../DataSets/DBLP/a_lable.xls"
 save_excel(a_lable_data, a_lable_path)

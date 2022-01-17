@@ -8,9 +8,14 @@ from src.common.init_train_data import train_data
 import matplotlib.pyplot as plt
 import random
 import numpy as np
-
+import os.path as path
 keras = tf.keras
 layers = tf.keras.layers
+
+
+model_data = path.join(path.dirname(path.abspath(__file__)), "../main/cluster/sava/DBLP/encoder")
+save_img_path = path.join(path.dirname(path.abspath(__file__)), "../main/cluster/压缩后的标签显示.jpg")
+
 
 def bench_k_means(kmeans, name, rate, data, labels):
     t0 = time()
@@ -79,7 +84,7 @@ def init_cluster_data():
     encode_output = keras.layers.Conv2D(1, 2, strides=1, padding="same", activation='relu')(encode)
 
     encoder = keras.Model(inputs, encode_output)
-    encoder.load_weights("../main/sava/encoder")
+    encoder.load_weights(model_data)
     X_trained = encoder(x_data)
     x = X_trained.numpy()
     # 让点更加分散
@@ -100,5 +105,5 @@ for i in data:
     x.append(i[0])
     y.append(i[1])
 plt.scatter(x, y, s=6, c=label)
-plt.savefig('../main/压缩后标签显示.jpg')
+plt.savefig(save_img_path)
 plt.show()
