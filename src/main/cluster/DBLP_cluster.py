@@ -1,11 +1,11 @@
 import numpy as np
-from src.utils.cluster_utils import init_cluster_data
+from src.utils.cluster_utils import init_cluster_data, init_cluster_data2
 from sklearn.cluster import KMeans
 from src.utils.cluster_utils import bench_k_means
 import matplotlib.pyplot as plt
 
 # 导入数据集
-data, labels = init_cluster_data()
+data, labels = init_cluster_data2()
 # 将训练集转化为numpy
 data = np.array(data)
 labels = np.array(labels)
@@ -28,17 +28,21 @@ print(82 * "_")
 kmeans = KMeans(init="k-means++", n_clusters=n_digits, n_init=4)
 kmeans.fit(data)
 
-# centroids = kmeans.cluster_centers_
+centroids = kmeans.cluster_centers_
 
-centroids = [[1.88682042, 0.10928035],
-             [2.4022796, 0.4929822],
-             [2.85314042, 0.745028569],
-             [2.11730389, 0.27801713]]
+# centroids = [[0.12513963, 0.9209147],
+#              [2.37020051, 0.61973495],
+#              [3.35460522, 0.47322626],
+#              [1.98209744, 0.7301818]]
+centroids1 = [[0.10282154, 1.818037273],
+              [0.06946871, 0.7043329],
+              [0.12228672, 1.05664249],
+              [0.02593159, 0.32408104]]
 print(centroids)
 # 画聚类中心
 plt.scatter(
-    [i[0] for i in centroids],
-    [i[1] for i in centroids],
+    [i[0] for i in centroids1],
+    [i[1] for i in centroids1],
     marker="x",
     s=169,
     linewidths=3,

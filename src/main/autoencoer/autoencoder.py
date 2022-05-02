@@ -15,7 +15,6 @@ x_data = tf.convert_to_tensor(x_data) / 8000
 # 标准化  =>   (0,1)
 x_data = tf.reshape(x_data, shape=(-1, 16, 16))
 x_data = tf.expand_dims(x_data, -1)
-# 训练集形状(7956, 257)
 shape = x_data.shape
 print(shape)
 #  (257,1)
